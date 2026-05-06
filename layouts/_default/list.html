@@ -3,15 +3,19 @@
 {{ define "main" }}
   {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" .Title) }}
   {{ $pages := sort .RegularPages "File.BaseFileName" "desc" }}
+  {{ $paginator := .Paginate $pages 50 }}
 
   <header class="page-head">
     <h1>{{ $sectionTitle }}</h1>
-    <p class="muted">{{ len $pages }} digest{{ if ne (len $pages) 1 }}s{{ end }}</p>
+    <p class="muted">
+      {{ len $pages }} digest{{ if ne (len $pages) 1 }}s{{ end }}
+      {{ if gt $paginator.TotalPages 1 }} · page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}{{ end }}
+    </p>
   </header>
 
   {{ if $pages }}
     <ol class="digest-list">
-      {{ range $pages }}
+      {{ range $paginator.Pages }}
         <li>
           <a href="{{ .RelPermalink }}">
             <span class="digest-title">{{ partial "digest-title.html" . }}</span>
@@ -20,6 +24,24 @@
         </li>
       {{ end }}
     </ol>
+
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pagination" aria-label="{{ $sectionTitle }} pagination">
+        {{ if $paginator.HasPrev }}
+          <a href="{{ $paginator.Prev.URL }}">Previous</a>
+        {{ else }}
+          <span class="disabled">Previous</span>
+        {{ end }}
+
+        <span class="muted">Page {{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+
+        {{ if $paginator.HasNext }}
+          <a href="{{ $paginator.Next.URL }}">Next</a>
+        {{ else }}
+          <span class="disabled">Next</span>
+        {{ end }}
+      </nav>
+    {{ end }}
   {{ else }}
     <p class="empty">No {{ lower $sectionTitle }} digests yet.</p>
   {{ end }}

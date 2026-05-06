@@ -170,6 +170,31 @@
         border-top: 1px solid var(--border);
       }
 
+      .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 26px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+      }
+
+      .pagination a,
+      .pagination span {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .pagination a {
+        font-weight: 650;
+      }
+
+      .pagination .disabled {
+        color: var(--muted);
+      }
+
       .article-shell {
         max-width: 780px;
       }
@@ -273,6 +298,12 @@
           align-items: flex-start;
           flex-direction: column;
           gap: 2px;
+        }
+
+        .pagination {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 6px;
         }
       }
     </style>

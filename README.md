@@ -49,6 +49,8 @@ Daily · 2026-05-06
 Weekly · 2026-05-03
 ```
 
+The home page shows the latest 10 daily and weekly digests. Section list pages such as `/daily/` and `/weekly/` are paginated automatically when there are more than 50 entries.
+
 ## Deployment
 
 The workflow at `.github/workflows/pages.yml` builds the Hugo site and deploys it to GitHub Pages whenever changes are pushed to `main`.
