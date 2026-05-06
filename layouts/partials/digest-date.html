@@ -1,0 +1,6 @@
+{{- $name := .File.BaseFileName -}}
+{{- if findRE `^\d{4}-\d{2}-\d{2}$` $name -}}
+  {{- $name -}}
+{{- else -}}
+  {{- .File.TranslationBaseName -}}
+{{- end -}}

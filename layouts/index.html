@@ -1,0 +1,49 @@
+{{ define "title" }}{{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  <header class="page-head">
+    <h1>{{ site.Title }}</h1>
+    <p class="muted">AI paper digests for fast internal reading.</p>
+  </header>
+
+  {{ $daily := sort (where site.RegularPages "Section" "daily") "File.BaseFileName" "desc" }}
+  {{ $weekly := sort (where site.RegularPages "Section" "weekly") "File.BaseFileName" "desc" }}
+
+  <div class="layout-grid">
+    <section class="section-panel" aria-labelledby="latest-daily">
+      <h2 id="latest-daily">Latest Daily</h2>
+      {{ if $daily }}
+        <ol class="digest-list">
+          {{ range first 10 $daily }}
+            <li>
+              <a href="{{ .RelPermalink }}">
+                <span class="digest-title">{{ partial "digest-title.html" . }}</span>
+                <span class="digest-date">{{ partial "digest-date.html" . }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ol>
+      {{ else }}
+        <p class="empty">No daily digests yet.</p>
+      {{ end }}
+    </section>
+
+    <section class="section-panel" aria-labelledby="latest-weekly">
+      <h2 id="latest-weekly">Latest Weekly</h2>
+      {{ if $weekly }}
+        <ol class="digest-list">
+          {{ range first 10 $weekly }}
+            <li>
+              <a href="{{ .RelPermalink }}">
+                <span class="digest-title">{{ partial "digest-title.html" . }}</span>
+                <span class="digest-date">{{ partial "digest-date.html" . }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ol>
+      {{ else }}
+        <p class="empty">No weekly digests yet.</p>
+      {{ end }}
+    </section>
+  </div>
+{{ end }}

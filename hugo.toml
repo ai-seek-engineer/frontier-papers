@@ -1,0 +1,17 @@
+baseURL = "https://example.com/"
+languageCode = "zh-CN"
+title = "Frontier Papers"
+
+disableKinds = ["taxonomy", "term"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]

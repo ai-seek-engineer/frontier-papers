@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default "zh-CN" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ block "title" . }}{{ site.Title }}{{ end }}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fa;
+        --surface: #ffffff;
+        --text: #20242a;
+        --muted: #626c7a;
+        --border: #dce1e8;
+        --accent: #1769aa;
+        --accent-soft: #e8f1f8;
+        --code-bg: #f1f3f6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+      }
+
+      .nav {
+        width: min(100% - 32px, 980px);
+        min-height: 60px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        color: var(--text);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a[aria-current="page"] {
+        color: var(--text);
+        font-weight: 650;
+      }
+
+      main {
+        width: min(100% - 32px, 980px);
+        margin: 0 auto;
+        padding: 36px 0 56px;
+      }
+
+      .page-head {
+        margin-bottom: 26px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.3;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 5vw, 2.45rem);
+      }
+
+      h2 {
+        margin: 34px 0 12px;
+        font-size: 1.35rem;
+      }
+
+      h3 {
+        margin: 28px 0 10px;
+        font-size: 1.1rem;
+      }
+
+      .muted,
+      .meta {
+        color: var(--muted);
+      }
+
+      .layout-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .section-panel {
+        min-width: 0;
+      }
+
+      .section-panel h2 {
+        margin-top: 0;
+      }
+
+      .digest-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .digest-list li {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .digest-list a {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 11px 0;
+        color: var(--text);
+      }
+
+      .digest-list a:hover .digest-title {
+        color: var(--accent);
+      }
+
+      .digest-title {
+        font-weight: 650;
+      }
+
+      .digest-date {
+        color: var(--muted);
+        font-size: 0.92rem;
+        white-space: nowrap;
+      }
+
+      .empty {
+        margin: 0;
+        padding: 18px 0;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+      }
+
+      .article-shell {
+        max-width: 780px;
+      }
+
+      .article {
+        overflow-wrap: anywhere;
+      }
+
+      .article h1 {
+        margin-top: 28px;
+        font-size: 1.6rem;
+      }
+
+      .article h2 {
+        border-top: 1px solid var(--border);
+        padding-top: 22px;
+      }
+
+      .article p,
+      .article ul,
+      .article ol,
+      .article blockquote,
+      .article table,
+      .article pre {
+        margin: 16px 0;
+      }
+
+      .article ul,
+      .article ol {
+        padding-left: 1.35rem;
+      }
+
+      .article blockquote {
+        padding-left: 16px;
+        color: var(--muted);
+        border-left: 4px solid var(--border);
+      }
+
+      .article code {
+        padding: 0.15em 0.35em;
+        border-radius: 4px;
+        background: var(--code-bg);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        font-size: 0.92em;
+      }
+
+      .article pre {
+        overflow-x: auto;
+        padding: 16px;
+        border-radius: 6px;
+        background: var(--code-bg);
+      }
+
+      .article pre code {
+        padding: 0;
+        background: transparent;
+      }
+
+      .article table {
+        width: 100%;
+        border-collapse: collapse;
+        display: block;
+        overflow-x: auto;
+      }
+
+      .article th,
+      .article td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .article th {
+        background: var(--accent-soft);
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-top: 34px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 720px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 6px;
+          padding: 12px 0;
+        }
+
+        main {
+          padding-top: 26px;
+        }
+
+        .layout-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .digest-list a {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+        <div class="nav-links">
+          <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
+          <a href="{{ "/daily/" | relURL }}" {{ if eq .Section "daily" }}aria-current="page"{{ end }}>Daily</a>
+          <a href="{{ "/weekly/" | relURL }}" {{ if eq .Section "weekly" }}aria-current="page"{{ end }}>Weekly</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+  </body>
+</html>

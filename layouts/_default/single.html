@@ -1,0 +1,17 @@
+{{ define "title" }}{{ partial "digest-title.html" . }} · {{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (humanize .Section)) }}
+  <article class="article-shell">
+    <header class="page-head">
+      <h1>{{ partial "digest-title.html" . }}</h1>
+      <p class="meta">{{ $sectionTitle }} digest · {{ partial "digest-date.html" . }}</p>
+    </header>
+
+    <div class="article">
+      {{ .Content }}
+    </div>
+
+    <a class="back-link" href="{{ printf "/%s/" .Section | relURL }}">Back to {{ $sectionTitle }}</a>
+  </article>
+{{ end }}
