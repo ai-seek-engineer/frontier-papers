@@ -2,6 +2,7 @@
 
 {{ define "main" }}
   {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (humanize .Section)) }}
+  {{ $sectionPage := site.GetPage "section" .Section }}
   <article class="article-shell">
     <header class="page-head">
       <h1>{{ partial "digest-title.html" . }}</h1>
@@ -12,6 +13,6 @@
       {{ .Content }}
     </div>
 
-    <a class="back-link" href="{{ printf "/%s/" .Section | relURL }}">Back to {{ $sectionTitle }}</a>
+    <a class="back-link" href="{{ $sectionPage.RelPermalink }}">Back to {{ $sectionTitle }}</a>
   </article>
 {{ end }}

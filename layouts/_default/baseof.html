@@ -280,11 +280,13 @@
   <body>
     <header class="site-header">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+        {{ $dailySection := site.GetPage "section" "daily" }}
+        {{ $weeklySection := site.GetPage "section" "weekly" }}
+        <a class="brand" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
         <div class="nav-links">
-          <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
-          <a href="{{ "/daily/" | relURL }}" {{ if eq .Section "daily" }}aria-current="page"{{ end }}>Daily</a>
-          <a href="{{ "/weekly/" | relURL }}" {{ if eq .Section "weekly" }}aria-current="page"{{ end }}>Weekly</a>
+          <a href="{{ site.Home.RelPermalink }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
+          <a href="{{ $dailySection.RelPermalink }}" {{ if eq .Section "daily" }}aria-current="page"{{ end }}>Daily</a>
+          <a href="{{ $weeklySection.RelPermalink }}" {{ if eq .Section "weekly" }}aria-current="page"{{ end }}>Weekly</a>
         </div>
       </nav>
     </header>
