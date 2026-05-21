@@ -25,6 +25,7 @@ Create a Markdown file in one of these directories:
 ```text
 content/daily/
 content/weekly/
+content/research/
 ```
 
 Use the filename format:
@@ -33,11 +34,14 @@ Use the filename format:
 YYYY-MM-DD.md
 ```
 
+For miscellaneous deep research notes under `content/research/`, descriptive filenames such as `agent-memory-systems.md` are also fine.
+
 Examples:
 
 ```text
 content/daily/2026-05-06.md
 content/weekly/2026-05-03.md
+content/research/agent-memory-systems.md
 ```
 
 Paste the digest body directly into the file. Do not add frontmatter.
@@ -47,9 +51,27 @@ Article titles are generated automatically from the folder and filename:
 ```text
 Daily · 2026-05-06
 Weekly · 2026-05-03
+Deep Research · agent-memory-systems
 ```
 
-The home page shows the latest 10 daily and weekly digests. Section list pages such as `/daily/` and `/weekly/` are paginated automatically when there are more than 50 entries.
+The home page shows the latest 10 daily, weekly, and deep research entries. Section list pages such as `/daily/`, `/weekly/`, and `/research/` are paginated automatically when there are more than 50 entries.
+
+Markdown supports fenced code blocks, Mermaid diagrams, and TeX math in the published Hugo site:
+
+````markdown
+```mermaid
+flowchart LR
+  A[Idea] --> B[Deep Research]
+```
+
+Inline math: $E=mc^2$
+
+Block math:
+
+$$
+\int_0^1 x^2 dx = \frac{1}{3}
+$$
+````
 
 ## Deployment
 
@@ -64,7 +86,7 @@ Settings -> Pages -> Build and deployment -> Source: GitHub Actions
 After that, the normal maintenance flow is:
 
 ```text
-1. Add a Markdown file under content/daily or content/weekly.
+1. Add a Markdown file under content/daily, content/weekly, or content/research.
 2. Commit and push to main.
 3. GitHub Actions publishes the updated site.
 ```

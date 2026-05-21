@@ -6,7 +6,8 @@ disableKinds = ["taxonomy", "term"]
 
 [markup]
   [markup.highlight]
-    noClasses = false
+    noClasses = true
+    style = "github"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true

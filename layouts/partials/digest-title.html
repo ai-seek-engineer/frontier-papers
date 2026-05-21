@@ -1,3 +1,3 @@
-{{- $section := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (humanize .Section)) -}}
+{{- $section := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (cond (eq .Section "research") "Deep Research" (humanize .Section))) -}}
 {{- $date := partial "digest-date.html" . -}}
 {{- printf "%s · %s" $section $date -}}

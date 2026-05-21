@@ -8,6 +8,7 @@
 
   {{ $daily := sort (where site.RegularPages "Section" "daily") "File.BaseFileName" "desc" }}
   {{ $weekly := sort (where site.RegularPages "Section" "weekly") "File.BaseFileName" "desc" }}
+  {{ $research := sort (where site.RegularPages "Section" "research") "File.BaseFileName" "desc" }}
 
   <div class="layout-grid">
     <section class="section-panel" aria-labelledby="latest-daily">
@@ -43,6 +44,24 @@
         </ol>
       {{ else }}
         <p class="empty">No weekly digests yet.</p>
+      {{ end }}
+    </section>
+
+    <section class="section-panel" aria-labelledby="latest-research">
+      <h2 id="latest-research">Latest Deep Research</h2>
+      {{ if $research }}
+        <ol class="digest-list">
+          {{ range first 10 $research }}
+            <li>
+              <a href="{{ .RelPermalink }}">
+                <span class="digest-title">{{ partial "digest-title.html" . }}</span>
+                <span class="digest-date">{{ partial "digest-date.html" . }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ol>
+      {{ else }}
+        <p class="empty">No deep research notes yet.</p>
       {{ end }}
     </section>
   </div>

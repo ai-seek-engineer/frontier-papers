@@ -1,12 +1,13 @@
 {{ define "title" }}{{ partial "digest-title.html" . }} · {{ site.Title }}{{ end }}
 
 {{ define "main" }}
-  {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (humanize .Section)) }}
+  {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (cond (eq .Section "research") "Deep Research" (humanize .Section))) }}
+  {{ $entryName := cond (eq .Section "research") "note" "digest" }}
   {{ $sectionPage := site.GetPage "section" .Section }}
   <article class="article-shell">
     <header class="page-head">
       <h1>{{ partial "digest-title.html" . }}</h1>
-      <p class="meta">{{ $sectionTitle }} digest · {{ partial "digest-date.html" . }}</p>
+      <p class="meta">{{ $sectionTitle }} {{ $entryName }} · {{ partial "digest-date.html" . }}</p>
     </header>
 
     <div class="article">

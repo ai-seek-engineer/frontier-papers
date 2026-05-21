@@ -1,14 +1,15 @@
-{{ define "title" }}{{ cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" .Title) }} · {{ site.Title }}{{ end }}
+{{ define "title" }}{{ cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (cond (eq .Section "research") "Deep Research" .Title)) }} · {{ site.Title }}{{ end }}
 
 {{ define "main" }}
-  {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" .Title) }}
+  {{ $sectionTitle := cond (eq .Section "daily") "Daily" (cond (eq .Section "weekly") "Weekly" (cond (eq .Section "research") "Deep Research" .Title)) }}
+  {{ $entryName := cond (eq .Section "research") "note" "digest" }}
   {{ $pages := sort .RegularPages "File.BaseFileName" "desc" }}
   {{ $paginator := .Paginate $pages 50 }}
 
   <header class="page-head">
     <h1>{{ $sectionTitle }}</h1>
     <p class="muted">
-      {{ len $pages }} digest{{ if ne (len $pages) 1 }}s{{ end }}
+      {{ len $pages }} {{ $entryName }}{{ if ne (len $pages) 1 }}s{{ end }}
       {{ if gt $paginator.TotalPages 1 }} · page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}{{ end }}
     </p>
   </header>
@@ -43,6 +44,6 @@
       </nav>
     {{ end }}
   {{ else }}
-    <p class="empty">No {{ lower $sectionTitle }} digests yet.</p>
+    <p class="empty">No {{ lower $sectionTitle }} {{ $entryName }}s yet.</p>
   {{ end }}
 {{ end }}
