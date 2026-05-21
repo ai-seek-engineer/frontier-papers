@@ -36,6 +36,9 @@ jobs:
           hugo-version: "0.118.2"
           extended: true
 
+      - name: Clean research citations
+        run: bash scripts/clean-research-citations.sh
+
       - name: Build
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
