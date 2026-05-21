@@ -15,8 +15,9 @@
         --accent: #1769aa;
         --accent-soft: #e8f1f8;
         --code-bg: #f1f3f6;
-        --site-width: 1440px;
-        --article-width: 1180px;
+        --site-width: 1600px;
+        --article-width: 1500px;
+        --article-ratio: 94%;
         --page-gutter: clamp(32px, 8vw, 96px);
       }
 
@@ -199,7 +200,9 @@
       }
 
       .article-shell {
+        width: var(--article-ratio);
         max-width: var(--article-width);
+        margin: 0 auto;
       }
 
       .article {
@@ -297,6 +300,10 @@
       }
 
       @media (max-width: 720px) {
+        :root {
+          --article-ratio: 100%;
+        }
+
         .nav {
           align-items: flex-start;
           flex-direction: column;
