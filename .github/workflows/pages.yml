@@ -33,7 +33,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.118.2"
+          hugo-version: "0.161.1"
           extended: true
 
       - name: Clean research citations
