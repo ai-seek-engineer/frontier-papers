@@ -2,6 +2,8 @@
 
 [下载 PDF 版](/files/research/Gaudi-AI加速卡技术全景调研报告.pdf)
 
+[下载 Word 版](/files/research/Gaudi%20AI%20加速卡技术全景调研报告.docx)
+
 ## 执行摘要
 
 对 AI 基础设施团队而言，Intel Gaudi 家族在 2026 年的现实定位已经相当清晰：**硬件上最有差异化的价值来自“片上以太网/RoCE 网络 + 大容量 HBM + 面向矩阵与非矩阵混合工作负载的异构架构”**，软件上最可用、最值得投入的主线则是 **PyTorch + SynapseAI/Intel Gaudi Software + Optimum-Habana + vLLM Hardware Plugin 或 Hugging Face TGI**。官方文档明确表明当前 Gaudi 软件套件围绕图编译器、运行时、TPC 内核库、HCCL、驱动/固件、Profiler 和 PyTorch 集成构建；最新文档版本覆盖 Gaudi 2 与 Gaudi 3，且当前默认执行路径已经转向 `eager + torch.compile`，Lazy mode 仅作为 legacy fallback。citeturn31view0turn32view0turn32view1turn9search11turn16search5
