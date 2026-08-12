@@ -1,7 +1,7 @@
 # LLM 推理场景中的投机解码技术演进与比较分析
 
 [下载 PDF 版](/files/research/LLM推理场景中的投机解码技术演进与比较分析.pdf)                                                                    
-[下载 Word 版](/files/research/LLM推理场景中的投机解码技术演进与比较分析.docx.docx)
+[下载 Word 版](/files/research/LLM推理场景中的投机解码技术演进与比较分析.docx)
 
 ## 执行摘要
 
