@@ -5,15 +5,22 @@ Minimal Hugo site for publishing AI paper digests from Markdown files.
 ## Local Development
 
 ```sh
-hugo server
+bash scripts/hugo-with-math.sh server
 ```
 
 Then open the local URL printed by Hugo.
 
+The build wrapper protects TeX formulas from Markdown parsing without changing
+the source files. Use it when building the site:
+
+```sh
+bash scripts/hugo-with-math.sh --minify
+```
+
 To build the static site:
 
 ```sh
-hugo
+bash scripts/hugo-with-math.sh --minify
 ```
 
 The generated files are written to `public/`.

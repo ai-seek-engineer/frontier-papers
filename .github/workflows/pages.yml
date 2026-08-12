@@ -36,11 +36,8 @@ jobs:
           hugo-version: "0.161.1"
           extended: true
 
-      - name: Clean research citations
-        run: bash scripts/clean-research-citations.sh
-
       - name: Build
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: bash scripts/hugo-with-math.sh --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
