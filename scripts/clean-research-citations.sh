@@ -10,5 +10,5 @@ fi
 
 find "$research_dir" -type f -name '*.md' -print0 |
   while IFS= read -r -d '' file; do
-    perl -0pi -CSDA -e 's/[[:blank:]]*\x{E200}cite(?:\x{E202}[^\x{E200}\x{E201}]+)+\x{E201}//g' "$file"
+    perl -0pi -CSDA -e 's/[[:blank:]]*\x{E200}(?:file)?cite(?:\x{E202}[^\x{E200}\x{E201}]+)+\x{E201}//g' "$file"
   done

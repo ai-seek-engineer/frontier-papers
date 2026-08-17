@@ -529,7 +529,7 @@ Q_\infty
 critical stage：
 
 \[
-i^\*=\arg\max_i s_i
+i^\star=\arg\max_i s_i
 \]
 
 这比“平均层数相等”重要得多。
@@ -1054,7 +1054,7 @@ KVTransfer
 而不是找一个全局统一：
 
 \[
-PP=P^\*
+PP=P^\star
 \]
 
 这是我认为 2026 年 PP inference 最重要的架构趋势之一。
@@ -1365,7 +1365,7 @@ S0→S1→S2→S3            S0→S1→S2→S3
 若一个 pipeline 的 steady-state capacity 约为：
 
 \[
-Q_{PP}\approx\frac1{s^\*}
+Q_{PP}\approx\frac1{s^\star}
 \]
 
 且 DP replicas 为 \(D\)，在请求充足且 load balance 理想时：
@@ -1373,7 +1373,7 @@ Q_{PP}\approx\frac1{s^\*}
 \[
 Q_{\text{cluster}}
 \approx
-\frac D{s^\*}
+\frac D{s^\star}
 \]
 
 DP 增加 throughput，但复制 model weights；PP 增加 model/KV capacity，但引入 stage dependency。TensorRT-LLM 当前文档也正是按“DP=复制模型处理不同请求，PP=分层模型”来区分二者。citeturn19view0turn20view2
@@ -1842,7 +1842,7 @@ overlap
 关键中间量则是：
 
 \[
-s^\*
+s^\star
 =
 \max_i
 \{
