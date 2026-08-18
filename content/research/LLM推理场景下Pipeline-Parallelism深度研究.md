@@ -1,6 +1,7 @@
 # LLM 推理场景下 Pipeline Parallelism 深度研究：性能模型、Bubble、调度优化与混合并行
 
 [下载 PDF 版](/files/research/LLM推理场景下Pipeline-Parallelism深度研究.pdf)
+
 [下载 Word 版](/files/research/LLM推理场景下Pipeline-Parallelism深度研究.docx)
 
 > **研究日期：2026-08-14；重点：LLM inference / online serving。**  
